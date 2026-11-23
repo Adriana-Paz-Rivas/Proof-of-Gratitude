@@ -22,10 +22,14 @@ const hitosPayload = hitosRaw.map((h) => ({
   fuente: h.fuente || null,
 }));
 
-const dataPayload = JSON.stringify({ community: communityPayload, hitos: hitosPayload }).replace(
-  /<\/script/gi,
-  '<\\/script'
-);
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const stellarMarkCss = `url(${base}icons/stellar-mark.png)`;
+
+const dataPayload = JSON.stringify({
+  community: communityPayload,
+  hitos: hitosPayload,
+  base,
+}).replace(/<\/script/gi, '<\\/script');
 ---
 
 <!doctype html>
@@ -347,8 +351,6 @@ const dataPayload = JSON.stringify({ community: communityPayload, hitos: hitosPa
     .legend-dot.milestone {
       background: var(--marker);
       border-radius: 0;
-      -webkit-mask-image: url('/icons/stellar-mark.png');
-      mask-image: url('/icons/stellar-mark.png');
       -webkit-mask-size: contain;
       mask-size: contain;
       -webkit-mask-repeat: no-repeat;
@@ -561,8 +563,6 @@ const dataPayload = JSON.stringify({ community: communityPayload, hitos: hitosPa
     .dot.milestone .dot-mark {
       border-radius: 0;
       background: var(--marker);
-      -webkit-mask-image: url('/icons/stellar-mark.png');
-      mask-image: url('/icons/stellar-mark.png');
       -webkit-mask-size: contain;
       mask-size: contain;
       -webkit-mask-repeat: no-repeat;
@@ -854,6 +854,12 @@ const dataPayload = JSON.stringify({ community: communityPayload, hitos: hitosPa
       }
     }
   </style>
+  <style is:global set:html={`
+    .dot.milestone .dot-mark, .legend-dot.milestone {
+      -webkit-mask-image: ${stellarMarkCss};
+      mask-image: ${stellarMarkCss};
+    }
+  `}></style>
 </head>
 <body>
   <section class="hero">
@@ -894,7 +900,7 @@ const dataPayload = JSON.stringify({ community: communityPayload, hitos: hitosPa
           <span class="counter-number" id="counterNumber">0</span>
           <span class="counter-label" id="counterLabel">personas dejaron su firma</span>
         </div>
-        <a class="cta-button" href="/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">
+        <a class="cta-button" href={`${base}CONTRIBUTING.md`} target="_blank" rel="noopener noreferrer">
           Sumá tu agradecimiento
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
         </a>
@@ -966,6 +972,7 @@ const dataPayload = JSON.stringify({ community: communityPayload, hitos: hitosPa
 
       var raw = document.getElementById('pog-data').textContent;
       var DATA = JSON.parse(raw);
+      var BASE = DATA.base || '/';
       var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
@@ -1237,7 +1244,9 @@ const dataPayload = JSON.stringify({ community: communityPayload, hitos: hitosPa
 
         if (!cellData.milestone && !cellData.entries.length) {
           html +=
-            '<div class="empty-state reveal">Todavía no hay historias registradas para esta semana.<a class="cta-link" href="/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Sumá tu agradecimiento abriendo un Pull Request en GitHub.</a></div>';
+            '<div class="empty-state reveal">Todavía no hay historias registradas para esta semana.<a class="cta-link" href="' +
+            BASE +
+            'CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Sumá tu agradecimiento abriendo un Pull Request en GitHub.</a></div>';
         }
 
         panelBody.innerHTML = html;
