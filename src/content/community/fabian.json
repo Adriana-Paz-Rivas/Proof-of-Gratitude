@@ -1,0 +1,10 @@
+{
+  "nombre": "Fabián",
+  "conoci_stellar": "2026-06-01",
+  "github": "fabian416",
+  "agradece_a": "a Alejandra y a Daniela, de BAF, y al capítulo argentino de Stellar",
+  "por_que": "Llegamos a Stellar desde otra cadena, sin historia acá y sin conocer a nadie. Alejandra nos abrió la puerta de BAF, Daniela puso su firma en nuestro referral al SCF, y el capítulo argentino confió en nosotros con un SOW de Instawards para integrar USDC nativo y dejar el protocolo probado en mainnet. Nada de eso era obligación de nadie. Fue gente que se tomó el trabajo de entender qué estábamos construyendo y decidió empujarlo.",
+  "proximo_paso": "Abrir Lendoor al público en mainnet de Stellar y originar los primeros cien créditos sin colateral a personas verificadas.",
+  "tu_proyecto": "Lendoor: crédito sin colateral para quien el sistema formal no puede medir en Latinoamérica. En Stellar, el ciclo de pedir, repagar y construir historial corre en contratos Soroban con USDC nativo.",
+  "commits_hoy": "https://github.com/LuchoLeonel/lendoor-stellar/commits?author=fabian416"
+}
