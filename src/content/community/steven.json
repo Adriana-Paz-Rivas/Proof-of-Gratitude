@@ -1,0 +1,11 @@
+{
+  "nombre": "Steven",
+  "conoci_stellar": "2025-01-01",
+  "github": "stevmolina",
+  "agradece_a": "a BAF, y también a Eli",
+  "por_que": "A BAF, por abrir el espacio para que la comunidad de Stellar en Argentina se junte, comparta y construya. A Eli, por armar conmigo The Commit Club y empujar a que todos dejen su primera firma.",
+  "proximo_paso": "Seguir integrando IA con Stellar y ayudar a que más builders publiquen su primer proyecto en Testnet.",
+  "tu_proyecto": "The Commit Club kit: un plugin para shipear en Stellar Testnet con tu agente de IA (/stellarize, /commit-club) y un starter con contrato Soroban + página web.",
+  "commits_hoy": "https://github.com/stevmolina/stellar-commit-club/commits?author=stevmolina",
+  "redes": "https://x.com/stev_molina"
+}
