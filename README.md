@@ -44,16 +44,21 @@ evento](https://luma.com/starmaker-047r?tk=J0qdSN).
 
 ## Tu primer commit
 
-No necesitás instalar nada para dejar tu historia.
+No necesitás instalar nada ni usar la terminal. Se hace todo desde el navegador:
 
-1. Entrá a la carpeta [`src/content/community`](./src/content/community) y mirá el archivo
-   [`_ejemplo.json`](./src/content/community/_ejemplo.json).
-2. Copialo, completalo con tu historia (cuándo conociste Stellar, a quién le agradecés y por qué,
-   y tu próximo paso) y guardalo con tu nombre.
-3. Subilo como un Pull Request. Va a ser tu primer commit, y alguien del equipo lo revisa antes de
-   sumarlo a la línea de tiempo.
+1. Abrí el archivo de ejemplo: [`_ejemplo.json`](./src/content/community/_ejemplo.json).
+2. Tocá el ícono del lápiz (✏️) para editarlo. Como no tenés permiso para guardar cambios directo
+   en este repositorio, GitHub te va a preguntar si querés crear una rama nueva: decile que sí. Por
+   detrás te crea tu propia copia del proyecto (un "fork"), sin que tengas que hacer nada más.
+3. Cambiá el contenido por tu historia (cuándo conociste Stellar, a quién le agradecés y por qué, y
+   tu próximo paso), y cambiá también el nombre del archivo por el tuyo.
+4. Al final de la página, elegí la opción que dice algo como *"Create a new branch for this commit
+   and start a pull request"* y confirmá.
 
-La guía completa, con ejemplos, está en [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+Eso abre tu Pull Request automáticamente. Ese ya es tu primer commit — alguien del equipo lo revisa
+antes de sumarlo a la línea de tiempo.
+
+La guía completa, con el detalle de cada campo, está en [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
 ## Para quienes programan
 
