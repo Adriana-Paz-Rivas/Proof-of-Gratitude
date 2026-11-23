@@ -1,0 +1,23 @@
+[
+  {
+    "fecha": "2014-07-31",
+    "emoji": "🚀",
+    "titulo": "Nace la red Stellar",
+    "descripcion": "La red Stellar se pone en marcha por primera vez, impulsada por la Fundación Stellar.",
+    "fuente": "https://en.wikipedia.org/wiki/Stellar_(payment_network)"
+  },
+  {
+    "fecha": "2015-04-06",
+    "emoji": "🔁",
+    "titulo": "La red se reconstruye con el Protocolo de Consenso de Stellar (SCP)",
+    "descripcion": "Stellar relanza su red sobre una arquitectura de consenso propia. El token nativo pasa a llamarse Lumens (XLM).",
+    "fuente": "https://www.coindesk.com/stellar-founder-jed-mccaleb-new-protocol/"
+  },
+  {
+    "fecha": "2024-02-19",
+    "emoji": "🧩",
+    "titulo": "Soroban llega a Mainnet",
+    "descripcion": "Los contratos inteligentes de Soroban quedan disponibles en la red principal, abriendo una nueva generación de aplicaciones sobre Stellar.",
+    "fuente": "https://stellar.org/blog/developers/protocol-20-upgrade-guide"
+  }
+]
