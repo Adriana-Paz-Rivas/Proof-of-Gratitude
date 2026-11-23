@@ -10,7 +10,7 @@
   &nbsp;·&nbsp;
   <a href="#tu-primer-commit">Tu primer commit</a>
 
-  <br><br>
+  <br>
 
   <img alt="Astro" src="https://img.shields.io/badge/Astro-4-BC52EE?logo=astro&logoColor=white">
   <a href="https://github.com/mariaelisaaraya/Proof-of-Gratitude/actions/workflows/validate.yml"><img alt="Validación" src="https://github.com/mariaelisaaraya/Proof-of-Gratitude/actions/workflows/validate.yml/badge.svg"></a>
@@ -20,7 +20,7 @@
 <br>
 
 <div align="center">
-  <img src="./docs/screenshot.png" alt="La grilla de Proof of Gratitude: un punto por semana desde el nacimiento de Stellar" width="900">
+  <img width="1439" height="506" alt="La grilla de Proof of Gratitude: un punto por semana desde el nacimiento de Stellar" src="https://github.com/user-attachments/assets/3580b1e2-42a5-4cb7-8b74-ce42749edf46" />
 </div>
 
 ## Qué es esto
