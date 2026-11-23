@@ -22,14 +22,18 @@ const community = defineCollection({
   schema: z.object({
     nombre: z.string().min(1, 'Falta el nombre de quien agradece.'),
     conoci_stellar: fechaStellar,
-    agradece_a: z.string().min(1, 'Falta decir a quién se agradece.'),
-    por_que: z.string().min(1, 'Falta contar la historia (campo por_que).'),
-    proximo_paso: z.string().min(1, 'Falta el próximo paso.'),
-    redes: z.string().url('El campo redes tiene que ser un link válido (https://...).').optional(),
     github: z
       .string()
-      .regex(/^[A-Za-z0-9-]+$/, 'El campo github tiene que ser solo tu usuario, sin https:// ni @.')
+      .regex(/^[A-Za-z0-9-]+$/, 'El campo github tiene que ser solo tu usuario, sin https:// ni @.'),
+    agradece_a: z.string().min(1, 'Falta decir a quién se agradece.').optional(),
+    por_que: z.string().min(1, 'Falta contar la historia (campo por_que).').optional(),
+    proximo_paso: z.string().min(1, 'Falta el próximo paso.').optional(),
+    tu_proyecto: z.string().min(1, 'Contá algo sobre tu proyecto (campo tu_proyecto).').optional(),
+    commits_hoy: z
+      .string()
+      .url('El campo commits_hoy tiene que ser un link válido a GitHub (https://...).')
       .optional(),
+    redes: z.string().url('El campo redes tiene que ser un link válido (https://...).').optional(),
   }),
 });
 

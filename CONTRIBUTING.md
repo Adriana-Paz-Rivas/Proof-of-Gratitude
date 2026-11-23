@@ -17,19 +17,30 @@ Copiá este contenido y completalo:
 {
   "nombre": "Tu nombre",
   "conoci_stellar": "2022-05-01",
+  "github": "tu-usuario-de-github",
   "agradece_a": "a la persona o comunidad a la que querés agradecer",
   "por_que": "Por qué se lo agradecés. Contá la historia con tus palabras.",
   "proximo_paso": "Qué es lo próximo que querés hacer en el ecosistema de Stellar.",
-  "redes": "https://x.com/tu-usuario",
-  "github": "tu-usuario-de-github"
+  "tu_proyecto": "Contá sobre el proyecto en el que estás trabajando.",
+  "commits_hoy": "https://github.com/tu-usuario/tu-proyecto/commits?author=tu-usuario",
+  "redes": "https://x.com/tu-usuario"
 }
 ```
 
-El campo `redes` es opcional: si lo completás, tu nombre aparece como link a ese perfil en el detalle de tu semana.
+Los únicos campos obligatorios son `nombre`, `conoci_stellar` y `github`. Todo lo demás es
+opcional, así que podés borrar del archivo cualquier campo que no quieras completar.
 
-El campo `github` también es opcional, y es independiente de `redes`: poné ahí solo tu usuario de
+- `agradece_a`, `por_que` y `proximo_paso` son para quien quiere dejar un agradecimiento.
+- `tu_proyecto` y `commits_hoy` son para quien no quiere agradecer a nadie en particular y
+  prefiere contar en qué proyecto está trabajando: `tu_proyecto` es texto libre y `commits_hoy`
+  es un link a tus commits de hoy en GitHub (por ejemplo `https://github.com/usuario/repo/commits?author=usuario`).
+- `redes` es opcional: si lo completás, tu nombre aparece como link a ese perfil en el detalle de tu semana.
+
+Podés completar solo los campos de agradecimiento, solo los de tu proyecto, o ambos.
+
+El campo `github` es obligatorio e independiente de `redes`: poné ahí solo tu usuario de
 GitHub (sin `https://` ni `@`) y tu foto de perfil de GitHub va a aparecer como avatar en tu
-tarjeta. Si no lo completás, se muestra la inicial de tu nombre.
+tarjeta.
 
 También hay una plantilla lista en [`src/content/community/_ejemplo.json`](src/content/community/_ejemplo.json).
 

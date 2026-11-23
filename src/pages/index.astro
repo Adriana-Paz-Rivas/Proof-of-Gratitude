@@ -7,9 +7,11 @@ const communityEntries = await getCollection('community');
 const communityPayload = communityEntries.map((entry) => ({
   nombre: entry.data.nombre,
   fecha: entry.data.conoci_stellar,
-  agradece_a: entry.data.agradece_a,
-  por_que: entry.data.por_que,
-  proximo_paso: entry.data.proximo_paso,
+  agradece_a: entry.data.agradece_a || null,
+  por_que: entry.data.por_que || null,
+  proximo_paso: entry.data.proximo_paso || null,
+  tu_proyecto: entry.data.tu_proyecto || null,
+  commits_hoy: entry.data.commits_hoy || null,
   redes: entry.data.redes || null,
   github: entry.data.github || null,
 }));
@@ -1040,9 +1042,15 @@ const dataPayload = JSON.stringify({
           : esc(e.nombre);
         var html = '<div class="person-card' + (revealClass ? ' ' + revealClass : '') + '">';
         html += '<div class="person-head">' + githubAvatar(e) + '<p class="person-name">' + nameHtml + '</p></div>';
-        html += '<p class="person-thanks">Agradece ' + esc(e.agradece_a) + '</p>';
-        html += '<p class="person-reason">' + esc(e.por_que) + '</p>';
-        html += '<p class="person-next"><b>Próximo commit para 2027:</b> ' + esc(e.proximo_paso) + '</p>';
+        if (e.agradece_a) html += '<p class="person-thanks">Agradece ' + esc(e.agradece_a) + '</p>';
+        if (e.por_que) html += '<p class="person-reason">' + esc(e.por_que) + '</p>';
+        if (e.tu_proyecto) html += '<p class="person-reason"><b>Su proyecto:</b> ' + esc(e.tu_proyecto) + '</p>';
+        if (e.proximo_paso) html += '<p class="person-next"><b>Próximo commit para 2027:</b> ' + esc(e.proximo_paso) + '</p>';
+        if (e.commits_hoy && /^https?:\/\//i.test(e.commits_hoy))
+          html +=
+            '<p class="person-next"><a href="' +
+            esc(e.commits_hoy) +
+            '" target="_blank" rel="noopener noreferrer">Ver sus commits de hoy</a></p>';
         html += '</div>';
         return html;
       }
