@@ -44,7 +44,9 @@ evento](https://luma.com/starmaker-047r?tk=J0qdSN).
 
 ## Tu primer commit
 
-No necesitás instalar nada ni usar la terminal. Se hace todo desde el navegador:
+Hay más de una forma de hacerlo: desde el navegador, con la terminal o con un editor como VS
+Code. En el taller vamos a mostrar varias. Esta es la más simple para arrancar, directo desde el
+navegador:
 
 1. Abrí el archivo de ejemplo: [`_ejemplo.json`](./src/content/community/_ejemplo.json).
 2. Tocá el ícono del lápiz (✏️) para editarlo. Como no tenés permiso para guardar cambios directo
