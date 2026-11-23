@@ -57,6 +57,29 @@ navegador:
 4. Al final de la página, elegí la opción que dice algo como *"Create a new branch for this commit
    and start a pull request"* y confirmá.
 
+### Plantilla
+
+Tu archivo va en `src/content/community/` con tu nombre (o un apodo) como nombre de archivo, por
+ejemplo `src/content/community/tu-nombre.json`. Copiá este contenido y completalo:
+
+```json
+{
+  "nombre": "Tu nombre",
+  "conoci_stellar": "2022-05-01",
+  "github": "tu-usuario-de-github",
+  "agradece_a": "a la persona o comunidad a la que querés agradecer",
+  "por_que": "Por qué se lo agradecés. Contá la historia con tus palabras.",
+  "proximo_paso": "Qué es lo próximo que querés hacer en el ecosistema de Stellar.",
+  "tu_proyecto": "Contá sobre el proyecto en el que estás trabajando.",
+  "commits_hoy": "https://github.com/tu-usuario/tu-proyecto/commits?author=tu-usuario",
+  "redes": "https://x.com/tu-usuario"
+}
+```
+
+Solo `nombre`, `conoci_stellar` y `github` son obligatorios: borrá los campos que no quieras
+completar. `conoci_stellar` es la fecha en que conociste Stellar (`AAAA-MM-DD`; si no te acordás
+el día, poné `01`).
+
 Eso abre tu Pull Request automáticamente. Ese ya es tu primer commit — alguien del equipo lo revisa
 antes de sumarlo a la línea de tiempo.
 
