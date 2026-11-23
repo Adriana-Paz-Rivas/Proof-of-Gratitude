@@ -1,0 +1,14 @@
+name: PR Guard Comment
+
+on:
+  workflow_run:
+    workflows: ["PR Guard Scan"]
+    types: [completed]
+
+permissions:
+  actions: read # to list and download the scan job's report artifact
+  pull-requests: write # to post the risk report as a PR comment
+
+jobs:
+  comment:
+    uses: BuenDia-Builders/pr-guard/.github/workflows/reusable-comment.yml@v1

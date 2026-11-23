@@ -1,0 +1,16 @@
+name: PR Guard Scan
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    uses: BuenDia-Builders/pr-guard/.github/workflows/reusable-scan.yml@v1
+    # Optional: fail the risk-score check (not just comment) at or above a
+    # given contributor-risk level, so branch protection can block it.
+    # with:
+    #   fail_on: high   # none (default) | low | medium | high
