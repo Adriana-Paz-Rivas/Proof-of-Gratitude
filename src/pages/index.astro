@@ -902,7 +902,7 @@ const dataPayload = JSON.stringify({
           <span class="counter-number" id="counterNumber">0</span>
           <span class="counter-label" id="counterLabel">personas dejaron su firma</span>
         </div>
-        <a class="cta-button" href={`${base}CONTRIBUTING.md`} target="_blank" rel="noopener noreferrer">
+        <a class="cta-button" href={`${base}firmar/`}>
           Sumá tu agradecimiento
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
         </a>
@@ -929,8 +929,8 @@ const dataPayload = JSON.stringify({
 
     <footer>
       <p>
-        Este archivo crece con cada historia que la comunidad decide dejar. Sumá la tuya abriendo un Pull Request en
-        GitHub siguiendo la plantilla de <code>CONTRIBUTING.md</code>.
+        Este archivo crece con cada historia que la comunidad decide dejar. Sumá la tuya con el <a href={`${base}firmar/`}>formulario</a>, o abriendo un Pull
+        Request en GitHub siguiendo la plantilla de <code>CONTRIBUTING.md</code>.
       </p>
     </footer>
 
@@ -1254,7 +1254,7 @@ const dataPayload = JSON.stringify({
           html +=
             '<div class="empty-state reveal">Todavía no hay historias registradas para esta semana.<a class="cta-link" href="' +
             BASE +
-            'CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Sumá tu agradecimiento abriendo un Pull Request en GitHub.</a></div>';
+            'firmar/">Sumá tu agradecimiento: completá el formulario y mandalo a GitHub.</a></div>';
         }
 
         panelBody.innerHTML = html;
