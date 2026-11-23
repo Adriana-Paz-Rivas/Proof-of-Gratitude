@@ -1,0 +1,314 @@
+---
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const REPO = 'mariaelisaaraya/Proof-of-Gratitude';
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dejá tu firma · Proof of Gratitude</title>
+  <meta name="description" content="Completá tu historia y generá tu archivo para Proof of Gratitude, sin saber de GitHub." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <script is:inline>
+    (function () {
+      try {
+        var saved = localStorage.getItem('pog-theme');
+        if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+      } catch (e) {}
+    })();
+  </script>
+  <style is:global>
+    :root {
+      --bg: #fbf6ee;
+      --surface: #ffffff;
+      --surface-2: #f1e8da;
+      --ink: #1a1410;
+      --ink-muted: #675a4e;
+      --line: rgba(26, 20, 16, 0.14);
+      --accent: #7a1030;
+      --accent-glow: rgba(122, 16, 48, 0.12);
+      --ok: #2f6b3a;
+      --font-display: 'Lora', Georgia, serif;
+      --font-mono: 'Space Mono', 'Courier New', monospace;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme='light']) {
+        --bg: #15100d;
+        --surface: #1e1814;
+        --surface-2: #272019;
+        --ink: #f5ece2;
+        --ink-muted: #ae9c8e;
+        --line: rgba(255, 255, 255, 0.14);
+        --accent: #ff7a92;
+        --accent-glow: rgba(255, 122, 146, 0.16);
+        --ok: #8fd19e;
+        color-scheme: dark;
+      }
+    }
+    :root[data-theme='dark'] {
+      --bg: #15100d;
+      --surface: #1e1814;
+      --surface-2: #272019;
+      --ink: #f5ece2;
+      --ink-muted: #ae9c8e;
+      --line: rgba(255, 255, 255, 0.14);
+      --accent: #ff7a92;
+      --accent-glow: rgba(255, 122, 146, 0.16);
+      --ok: #8fd19e;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); }
+
+    .hero {
+      position: relative; overflow: hidden;
+      background: radial-gradient(ellipse 70% 60% at 78% 0%, var(--accent-glow), transparent 70%), var(--surface-2);
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(var(--ink) 1px, transparent 1.6px); background-size: 16px 16px; opacity: 0.05;
+    }
+    .inner {
+      position: relative; max-width: 1120px; margin: 0 auto;
+      padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px));
+    }
+    .hero .inner { padding-block: 2.5rem 2.25rem; }
+    .eyebrow { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 1.5rem; }
+    .eyebrow a { color: inherit; text-decoration: none; }
+    .eyebrow a:hover { color: var(--accent); }
+    h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.2rem, 1.8rem + 2vw, 3.4rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 0.75rem; text-wrap: balance; }
+    h1 em { color: var(--accent); }
+    .tagline { font-family: var(--font-display); font-style: italic; font-size: 1.2rem; color: var(--ink-muted); margin: 0; max-width: 60ch; }
+
+    main.inner { padding-block: 2.5rem 4rem; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+    @media (max-width: 860px) { main.inner { grid-template-columns: 1fr; } }
+
+    form { display: flex; flex-direction: column; gap: 1.75rem; }
+    fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+    legend { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; margin-bottom: 0.25rem; padding: 0; }
+    legend small { display: block; font-family: var(--font-body); font-weight: 400; font-size: 0.9rem; color: var(--ink-muted); margin-top: 0.2rem; }
+    .field { display: flex; flex-direction: column; gap: 0.35rem; }
+    label { font-weight: 600; font-size: 0.95rem; }
+    label .req { color: var(--accent); }
+    .hint { font-size: 0.85rem; color: var(--ink-muted); margin: 0; }
+    input, textarea {
+      font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line);
+      border-radius: 12px; padding: 0.75rem 0.9rem; width: 100%;
+    }
+    textarea { resize: vertical; min-height: 5.5rem; line-height: 1.5; }
+    input:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .prefix { display: flex; align-items: stretch; }
+    .prefix span { font-family: var(--font-mono); font-size: 0.85rem; color: var(--ink-muted); display: flex; align-items: center; padding: 0 0.75rem; border: 1px solid var(--line); border-right: 0; border-radius: 12px 0 0 12px; background: var(--surface-2); }
+    .prefix input { border-radius: 0 12px 12px 0; }
+    .error { font-size: 0.85rem; color: var(--accent); margin: 0; min-height: 0; }
+    .error:empty { display: none; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 520px) { .row2 { grid-template-columns: 1fr; } }
+
+    aside { position: sticky; top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    @media (max-width: 860px) { aside { position: static; } }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.9rem; }
+    .card h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; margin: 0; }
+    .filename { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-muted); word-break: break-all; margin: 0; }
+    pre { margin: 0; font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.6; background: var(--surface-2); border-radius: 12px; padding: 0.9rem 1rem; overflow-x: auto; white-space: pre; }
+    .status { font-size: 0.9rem; margin: 0; }
+    .status.ok { color: var(--ok); }
+    .status.bad { color: var(--accent); }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .btn { all: unset; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.95rem; padding: 0.8rem 1.3rem; border-radius: 999px; cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .btn.primary { background: var(--accent); color: var(--surface); }
+    .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px var(--accent-glow); }
+    .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+    .btn.ghost:hover { background: var(--surface-2); }
+    .btn[aria-disabled='true'] { opacity: 0.45; pointer-events: none; }
+    .btn svg { width: 16px; height: 16px; }
+    ol.next { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.92rem; color: var(--ink-muted); }
+    ol.next strong { color: var(--ink); }
+    @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="inner">
+      <p class="eyebrow"><a href={base}>← Proof of Gratitude</a></p>
+      <h1>Dejá tu <em>firma</em></h1>
+      <p class="tagline">Contanos tu historia con Stellar. Te armamos el archivo y lo mandás a GitHub con un clic.</p>
+    </div>
+  </header>
+
+  <main class="inner">
+    <form id="f" novalidate>
+      <fieldset>
+        <legend>Quién sos <small>Lo único obligatorio está en esta parte.</small></legend>
+        <div class="field">
+          <label for="nombre">Nombre o apodo <span class="req">*</span></label>
+          <input id="nombre" name="nombre" autocomplete="name" placeholder="Eli" required />
+          <p class="error" data-for="nombre"></p>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="github">Usuario de GitHub <span class="req">*</span></label>
+            <div class="prefix"><span>github.com/</span><input id="github" name="github" autocomplete="username" placeholder="tu-usuario" spellcheck="false" autocapitalize="off" /></div>
+            <p class="error" data-for="github"></p>
+          </div>
+          <div class="field">
+            <label for="conoci">¿Cuándo conociste Stellar? <span class="req">*</span></label>
+            <input id="conoci" name="conoci" type="month" min="2014-07" />
+            <p class="hint">Vale aproximado: el mes alcanza. Decide en qué semana aparece tu punto.</p>
+            <p class="error" data-for="conoci"></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Tu agradecimiento <small>Opcional. Lo que no completes, no aparece.</small></legend>
+        <div class="field">
+          <label for="agradece_a">Agradece…</label>
+          <input id="agradece_a" name="agradece_a" placeholder="a Juana, que me ayudó con mi primer contrato" />
+          <p class="hint">Escribilo como sigue a la palabra "Agradece": empezá con <em>a</em>, <em>al</em> o <em>a la</em>.</p>
+          <p class="error" data-for="agradece_a"></p>
+        </div>
+        <div class="field">
+          <label for="por_que">¿Por qué?</label>
+          <textarea id="por_que" name="por_que" placeholder="Contá la historia con tus palabras."></textarea>
+        </div>
+        <div class="field">
+          <label for="proximo_paso">Tu próximo paso en Stellar</label>
+          <input id="proximo_paso" name="proximo_paso" placeholder="Lanzar mi primera dApp en Testnet" />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Lo que estás construyendo <small>Opcional. Para quien vino a hacer commits hoy.</small></legend>
+        <div class="field">
+          <label for="tu_proyecto">Tu proyecto</label>
+          <textarea id="tu_proyecto" name="tu_proyecto" placeholder="Contá en qué estás trabajando."></textarea>
+        </div>
+        <div class="field">
+          <label for="commits_hoy">Link a tus commits de hoy</label>
+          <input id="commits_hoy" name="commits_hoy" type="url" placeholder="https://github.com/tu-usuario/tu-proyecto/commits?author=tu-usuario" />
+          <p class="error" data-for="commits_hoy"></p>
+        </div>
+        <div class="field">
+          <label for="redes">Tus redes</label>
+          <input id="redes" name="redes" type="url" placeholder="https://x.com/tu-usuario" />
+          <p class="hint">Si lo completás, tu nombre aparece como link a ese perfil.</p>
+          <p class="error" data-for="redes"></p>
+        </div>
+      </fieldset>
+    </form>
+
+    <aside aria-live="polite">
+      <div class="card">
+        <h2>Tu archivo</h2>
+        <p class="filename" id="filename">src/content/community/tu-usuario.json</p>
+        <pre id="preview"></pre>
+        <p class="status" id="status"></p>
+        <div class="actions">
+          <a class="btn primary" id="open" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true">
+            Abrir en GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </a>
+          <button class="btn ghost" id="copy" type="button">Copiar JSON</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Y después</h2>
+        <ol class="next">
+          <li><strong>Abrir en GitHub</strong> crea tu archivo ya completo. Si te pide, iniciá sesión.</li>
+          <li>Bajá y tocá <strong>Commit changes…</strong>, después <strong>Propose changes</strong>. GitHub hace tu copia (fork) sola.</li>
+          <li>Tocá <strong>Create pull request</strong>. Cuando se mergee, se prende tu punto.</li>
+        </ol>
+        <p class="hint">¿Preferís hacerlo a mano? Copiá el JSON y seguí la <a href={`https://github.com/${REPO}/blob/main/CONTRIBUTING.md`} target="_blank" rel="noopener noreferrer">guía para contribuir</a>.</p>
+      </div>
+    </aside>
+  </main>
+
+  <script is:inline define:vars={{ REPO }}>
+    var LAUNCH = '2014-07-28';
+    var $ = function (id) { return document.getElementById(id); };
+    var fields = ['nombre', 'github', 'conoci', 'agradece_a', 'por_que', 'proximo_paso', 'tu_proyecto', 'commits_hoy', 'redes'];
+    var today = new Date();
+    var thisMonth = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0');
+    $('conoci').max = thisMonth;
+
+    function isUrl(v) { try { var u = new URL(v); return u.protocol === 'https:' || u.protocol === 'http:'; } catch (e) { return false; } }
+    function slug(v) { return v.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, ''); }
+
+    function build() {
+      var v = {}; fields.forEach(function (k) { v[k] = $(k).value.trim(); });
+      v.github = v.github.replace(/^@/, '').replace(/^https?:\/\/(www\.)?github\.com\//i, '').replace(/\/.*$/, '');
+      var errs = {};
+      if (!v.nombre) errs.nombre = 'Falta tu nombre o apodo.';
+      if (!v.github) errs.github = 'Falta tu usuario de GitHub.';
+      else if (!/^[A-Za-z0-9-]+$/.test(v.github)) errs.github = 'Solo tu usuario: letras, números y guiones, sin @ ni links.';
+      var fecha = '';
+      if (!v.conoci) errs.conoci = 'Elegí el mes en que conociste Stellar.';
+      else {
+        fecha = v.conoci + '-01';
+        if (fecha < LAUNCH) fecha = LAUNCH; // julio 2014: la red nació el 28
+        if (v.conoci > thisMonth) errs.conoci = 'Tiene que ser entre julio de 2014 y hoy.';
+      }
+      if (v.agradece_a && !/^(a|al)\s/i.test(v.agradece_a)) errs.agradece_a = 'Empezá con "a", "al" o "a la" (por ejemplo: "a Eli, que…").';
+      if (v.commits_hoy && !isUrl(v.commits_hoy)) errs.commits_hoy = 'Tiene que ser un link completo (https://…).';
+      if (v.redes && !isUrl(v.redes)) errs.redes = 'Tiene que ser un link completo (https://…).';
+
+      var out = { nombre: v.nombre, conoci_stellar: fecha, github: v.github };
+      ['agradece_a', 'por_que', 'proximo_paso', 'tu_proyecto', 'commits_hoy', 'redes'].forEach(function (k) { if (v[k]) out[k] = v[k]; });
+      return { out: out, errs: errs, file: slug(v.github || v.nombre) || 'tu-usuario' };
+    }
+
+    var touched = {};
+    function render() {
+      var r = build();
+      var json = JSON.stringify(r.out, null, 2) + '\n';
+      $('preview').textContent = json;
+      $('filename').textContent = 'src/content/community/' + r.file + '.json';
+      document.querySelectorAll('.error').forEach(function (el) {
+        var k = el.getAttribute('data-for');
+        el.textContent = touched[k] && r.errs[k] ? r.errs[k] : '';
+      });
+      var ok = Object.keys(r.errs).length === 0;
+      var s = $('status');
+      s.className = 'status ' + (ok ? 'ok' : 'bad');
+      s.textContent = ok ? 'Listo para mandar.' : 'Completá lo que falta para poder mandarlo.';
+      var open = $('open');
+      open.setAttribute('aria-disabled', ok ? 'false' : 'true');
+      open.href = ok
+        ? 'https://github.com/' + REPO + '/new/main/src/content/community?filename=' + encodeURIComponent(r.file + '.json') + '&value=' + encodeURIComponent(json)
+        : '#';
+      return json;
+    }
+
+    fields.forEach(function (k) {
+      $(k).addEventListener('input', render);
+      $(k).addEventListener('blur', function () { touched[k] = true; render(); });
+    });
+    $('open').addEventListener('click', function (e) {
+      if ($('open').getAttribute('aria-disabled') === 'true') {
+        e.preventDefault(); fields.forEach(function (k) { touched[k] = true; }); render();
+      }
+    });
+    $('copy').addEventListener('click', function () {
+      var json = render();
+      var btn = $('copy');
+      var done = function () { btn.textContent = 'Copiado'; setTimeout(function () { btn.textContent = 'Copiar JSON'; }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText(json).then(done, function () { selectPre(); });
+      else selectPre();
+    });
+    function selectPre() { var r = document.createRange(); r.selectNodeContents($('preview')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    render();
+  </script>
+</body>
+</html>
