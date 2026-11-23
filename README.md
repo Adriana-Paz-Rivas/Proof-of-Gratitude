@@ -38,7 +38,7 @@ Stellar es una red pensada para que mover dinero y construir con él sea simple,
 en cualquier parte del mundo. Alrededor de esa idea creció una comunidad de personas que aprenden,
 construyen y se ayudan entre sí, y este sitio es un lugar para guardar esa parte humana.
 
-Nació en un encuentro de esa comunidad en Buenos Aires: un día para compartir en qué está
+Nació en un encuentro de esa comunidad en Argentina: un día para compartir en qué está
 trabajando cada quien, agradecer lo construido este año y pensar lo que viene. [Sobre el
 evento](https://luma.com/starmaker-047r?tk=J0qdSN).
 
